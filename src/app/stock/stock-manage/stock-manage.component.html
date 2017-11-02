@@ -1,0 +1,45 @@
+<div class="box">
+    <div class="box-header with-border">
+        <button class="btn btn-success"><span class="glyphicon glyphicon-plus"> </span> 创建</button>
+        <div class="box-tools pull-right" style="margin-top:7px">
+            <div class="has-feedback">
+            <input type="text" class="form-control input-sm" placeholder="股票名称">
+            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table class="table table-bordered text-center">
+        <tr>
+            <th style="width: 10px">#</th>
+            <th>名称</th>
+            <th>代码</th>
+            <th>价格</th>
+            <th>评级</th>
+            <th>操作</th>
+        </tr>
+        <tr *ngFor="let stock of stocks;let i=index">
+            <td style="width: 10px">{{i+1}}</td>
+            <td>{{stock.name}}</td>
+            <td>{{stock.id}}</td>
+            <td>{{stock.rating}}</td>
+            <td><admin-stars [rating]="stock.rating"></admin-stars></td>
+            <td>
+                <a class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil"></span> 编辑</a>
+                <a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+            </td>
+        </tr>
+        </table>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer clearfix">
+        <ul class="pagination pagination-sm no-margin pull-right">
+        <li><a href="#">&laquo;</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">&raquo;</a></li>
+        </ul>
+    </div>
+</div>
