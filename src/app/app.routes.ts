@@ -5,7 +5,11 @@ import { StockManageComponent } from "./stock/stock-manage/stock-manage.componen
 
 export const appRoutes:Routes = [
     {
-        path: '',
+        path: 'home',
+        component: StockManageComponent
+    },
+    {
+        path: '**',
         component: StockManageComponent
     }
 ]
