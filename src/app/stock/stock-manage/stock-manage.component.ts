@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'admin-stock-manage',
@@ -9,7 +10,9 @@ export class StockManageComponent implements OnInit {
 
     private stocks:Array<Stock>;
 
-    constructor() { }
+    constructor(
+        public router: Router
+    ) { }
 
     ngOnInit() {
         this.stocks = [
@@ -19,6 +22,14 @@ export class StockManageComponent implements OnInit {
             new Stock( 5, "suzic", 865454, 4, "没有描述", ["haha","xixi"] ),
             new Stock( 3, "suzic", 123454, 3, "没有描述", ["haha","xixi"] )
         ];
+    }
+
+    create() {
+        this.router.navigateByUrl('stock-form/0');
+    }
+
+    updata(stock:Stock) {
+        this.router.navigateByUrl('stock-form/' + stock.id);
     }
 
 }
