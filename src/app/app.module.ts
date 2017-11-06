@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SideInfoComponent } from './side-info/side-info.component';
 import { StockManageComponent } from './stock/stock-manage/stock-manage.component';
 import { StarsComponent } from './stars/stars.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { StarsComponent } from './stars/stars.component';
     FooterComponent,
     SideInfoComponent,
     StockManageComponent,
-    StarsComponent
+    StarsComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
