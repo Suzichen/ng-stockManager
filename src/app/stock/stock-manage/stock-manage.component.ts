@@ -17,7 +17,7 @@ export class StockManageComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.stocks = this.stockService.stocks
+        this.stocks = this.stockService.getStocks();
     }
 
     create() {
