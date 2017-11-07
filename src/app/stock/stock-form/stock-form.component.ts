@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Stock } from '../stock-manage/stock-manage.component';
+import { StockService, Stock } from '../stock.service';
 
 @Component({
     selector: 'admin-stock-form',
@@ -10,7 +10,9 @@ export class StockFormComponent implements OnInit {
 
     private stock: Stock;
 
-    constructor() { }
+    constructor(
+        private stockService: StockService
+    ) { }
 
     ngOnInit() {
         this.stock = new Stock( 21, "suzic", 124324, 2, "没有描述", ["haha","xixi"] )
