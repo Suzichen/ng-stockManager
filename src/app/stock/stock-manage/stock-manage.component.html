@@ -3,7 +3,7 @@
         <button (click)="create()" class="btn btn-success"><span class="glyphicon glyphicon-plus"> </span> 创建</button>
         <div class="box-tools pull-right" style="margin-top:7px">
             <div class="has-feedback">
-            <input type="text" class="form-control input-sm" placeholder="股票名称">
+            <input [formControl]="searchInput" type="text" class="form-control input-sm" placeholder="股票名称">
             <span class="glyphicon glyphicon-search form-control-feedback"></span>
             </div>
         </div>
@@ -19,7 +19,7 @@
             <th>评级</th>
             <th>操作</th>
         </tr>
-        <tr *ngFor="let stock of stocks;let i=index">
+        <tr *ngFor="let stock of stocks | stockFilter:'name':keyWords;let i=index">
             <td style="width: 10px">{{i+1}}</td>
             <td>{{stock.name}}</td>
             <td>{{stock.id}}</td>

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { appRoutingModule } from './app.routes';
@@ -14,6 +15,7 @@ import { StarsComponent } from './stars/stars.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StockFormComponent } from './stock/stock-form/stock-form.component';
 import { StockService } from './stock/stock.service';
+import { StockFilterPipe } from './stock/stock-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -27,11 +29,14 @@ import { StockService } from './stock/stock.service';
     StockManageComponent,
     StarsComponent,
     DashboardComponent,
-    StockFormComponent
+    StockFormComponent,
+    StockFilterPipe
   ],
   imports: [
     BrowserModule,
-    appRoutingModule
+    appRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [StockService],
   bootstrap: [AppComponent]
