@@ -16,6 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StockFormComponent } from './stock/stock-form/stock-form.component';
 import { StockService } from './stock/stock.service';
 import { StockFilterPipe } from './stock/stock-filter.pipe';
+import { CheckboxValidatorDirective } from './stock/stock-form/directives/checkbox-validator.directive';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { StockFilterPipe } from './stock/stock-filter.pipe';
     StarsComponent,
     DashboardComponent,
     StockFormComponent,
-    StockFilterPipe
+    StockFilterPipe,
+    CheckboxValidatorDirective
   ],
   imports: [
     BrowserModule,

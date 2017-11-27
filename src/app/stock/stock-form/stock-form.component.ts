@@ -18,7 +18,8 @@ export class StockFormComponent implements OnInit {
     public formErrorsList = {
         name: '',
         code: '',
-        price: ''
+        price: '',
+        categories: ''
     };
 
     // 错误信息
@@ -32,6 +33,9 @@ export class StockFormComponent implements OnInit {
         },
         price: {
             required: '请输入价格。'
+        },
+        categories: {
+            checkboxValidator: '请至少选择一个种类。'
         }
     };
 
