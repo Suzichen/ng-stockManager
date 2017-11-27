@@ -8,25 +8,34 @@
     <!-- form start -->
     <form [formGroup]="form" class="form-horizontal">
         <div class="box-body">
-        <div class="form-group">
+        <div class="form-group" [ngClass]="{'has-error': formErrorsList.name }">
             <label for="name" class="col-sm-2 control-label">股票名称</label>
 
             <div class="col-sm-8">
-            <input formControlName="name" type="text" class="form-control" id="name" placeholder="股票名称" [value]="stock.name">
+                <input formControlName="name" type="text" class="form-control" id="name" placeholder="股票名称" [value]="stock.name">
+                <div *ngIf="formErrorsList.name" class="text-danger">
+                    {{ formErrorsList.name }}
+                </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" [ngClass]="{'has-error': formErrorsList.code }">
             <label for="code" class="col-sm-2 control-label">股票代码</label>
 
             <div class="col-sm-6">
-            <input formControlName="code" type="number" class="form-control" id="code" placeholder="股票代码" [value]="stock.id">
+                <input formControlName="code" type="number" class="form-control" id="code" placeholder="股票代码" [value]="stock.id">
+                <div *ngIf="formErrorsList.code" class="text-danger">
+                    {{ formErrorsList.code }}
+                </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" [ngClass]="{'has-error': formErrorsList.price }">
             <label for="price" class="col-sm-2 control-label">股票价格</label>
 
             <div class="col-sm-4">
-            <input formControlName="price" type="number" class="form-control" id="price" placeholder="单位：人民币" [value]="stock.price">
+                <input formControlName="price" type="number" class="form-control" id="price" placeholder="单位：人民币" [value]="stock.price">
+                <div *ngIf="formErrorsList.price" class="text-danger">
+                    {{ formErrorsList.price }}
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -59,7 +68,7 @@
         <!-- /.box-body -->
         <div class="box-footer">
         <button (click)="cancel()" class="btn btn-default">取消</button>
-        <button (click)="save()" class="btn btn-info pull-right">保存</button>
+        <button [disabled]="form.invalid" (click)="save()" class="btn btn-info pull-right">保存</button>
         </div>
         <!-- /.box-footer -->
     </form>

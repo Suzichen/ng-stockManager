@@ -20,7 +20,7 @@ export class StockService {
     public getStock(id:number):Stock {
         let stock:Stock = this.stocks.find(stock=> stock.id == id);
         if (!stock) {
-            stock = new Stock( 0, "初始股票", 0, 0, "没有描述", [] );
+            stock = new Stock( null, "", null, null, "", [] );
         }
         return stock;
     }
