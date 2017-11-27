@@ -24,11 +24,11 @@ export class StockFormComponent implements OnInit {
     ngOnInit() {
         let stockId = this.routerIfo.snapshot.params['id'];
         this.stock = this.stockService.getStock(stockId);
-        // 构建表单
         this.buildForm();
     }
 
-    buildForm() {
+    // 构建表单
+    private buildForm() {
         this.form = this.fb.group({
             name: [
                 this.stock.name,
@@ -60,9 +60,10 @@ export class StockFormComponent implements OnInit {
         })
     }
 
-    buildCategories(): Array<FormControl> {
+    // 创建复选框FormControl
+    private buildCategories(): Array<FormControl> {
         let formArray = [];
-        this.categories.forEach((categorie) => {
+        this.categories.forEach(categorie => {
             formArray.push(
                 new FormControl(this.stock.categories.indexOf(categorie) != -1)
             )
@@ -70,10 +71,27 @@ export class StockFormComponent implements OnInit {
         return formArray;
     }
 
-    cancel() {
-        this.router.navigateByUrl('/stock')
+    // 将布尔值数组转换为字符串数组
+    private toStringCategories(): Array<string> {
+        let stringCategories = [];
+        let index = 0;
+        this.form.value.categories.forEach((categorie, i) => {
+            if(categorie === true) {
+                stringCategories[index] = this.categories[i];
+                index++;
+            }
+        });
+        return stringCategories;
     }
+
+    cancel() {
+        // this.router.navigateByUrl('/stock')
+    }
+    
     save() {
-        this.router.navigateByUrl('/stock')
+        this.form.value.rating = this.stock.rating;
+        this.form.value.categories = this.toStringCategories();
+        console.log(this.form.value)
+        // this.router.navigateByUrl('/stock')
     }
 }
