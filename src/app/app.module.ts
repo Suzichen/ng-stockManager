@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { appRoutingModule } from './app.routes';
@@ -38,7 +39,8 @@ import { CheckboxValidatorDirective } from './stock/stock-form/directives/checkb
     BrowserModule,
     appRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [StockService],
   bootstrap: [AppComponent]

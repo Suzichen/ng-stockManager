@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { StockService, Stock } from '../stock.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from "rxjs";
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 
 @Component({
@@ -10,7 +11,7 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@ang
 })
 export class StockFormComponent implements OnInit {
 
-    private stock: Stock;
+    private stock: Stock = new Stock(null, '', null, null, '', [ ]);
     public form: FormGroup;
     public categories: Array<string> = ['IT','互联网','金融','医疗','教育'];
 
@@ -48,51 +49,77 @@ export class StockFormComponent implements OnInit {
 
     ngOnInit() {
         let stockId = this.routerIfo.snapshot.params['id'];
-        this.stock = this.stockService.getStock(stockId);
+        // 初始化表单
         this.buildForm();
+        // 获取后台数据，更新表单
+        if (stockId != 0) {
+            this.stockService.getStock(stockId).subscribe(
+                data => this.resetForm(data)
+            );
+        };
+        // 内容变化时，处理表单验证
         this.form.valueChanges
             .subscribe(value => this.onValueChange(value));
     }
 
-    // 构建表单
+    // 初始化表单
     private buildForm() {
         this.form = this.fb.group({
             name: [
-                this.stock.name,
+                '',
                 [
                     Validators.required,
                     Validators.minLength(3)
                 ]
             ],
             code: [
-                this.stock.id,
+                '',
                 [
                     Validators.required
                 ]
             ],
             price: [
-                this.stock.price,
+                '',
                 [
                     Validators.required,
                 ]
             ],
             categories: this.fb.array(
-                this.buildCategories()
+                this.buildCategories(true)
             ),
             desc: [
-                this.stock.desc
+                ''
             ]
         })
     }
 
+    // 获取到数据后渲染表单
+    resetForm(stock:Stock) {
+        this.stock = stock;
+        this.form.reset({
+            name: stock.name,
+            code: stock.id,
+            price: stock.price,
+            categories: this.buildCategories(),
+            desc: stock.desc
+        });
+    }
+
     // 创建复选框FormControl
-    private buildCategories(): Array<FormControl> {
+    private buildCategories(init?:boolean): Array<FormControl> {
         let formArray = [];
         this.categories.forEach(categorie => {
-            formArray.push(
-                new FormControl(this.stock.categories.indexOf(categorie) != -1)
-            )
-        })
+            // 判断是否需要初始化
+            if (!init) {
+                formArray.push(
+                    this.stock.categories.indexOf(categorie) != -1
+                )
+            } else {
+                formArray.push(
+                    new FormControl(false)
+                )
+            }
+        });
         return formArray;
     }
 
@@ -133,13 +160,12 @@ export class StockFormComponent implements OnInit {
     }
 
     cancel() {
-        // this.router.navigateByUrl('/stock')
+        this.router.navigateByUrl('/stock')
     }
 
     save() {
         this.form.value.rating = this.stock.rating;
         this.form.value.categories = this.toStringCategories();
-        console.log(this.form.value)
-        // this.router.navigateByUrl('/stock')
+        this.router.navigateByUrl('/stock');
     }
 }

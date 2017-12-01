@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl } from "@angular/forms";
-import "rxjs/Rx";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import "rxjs/Rx"
 import { StockService, Stock } from '../stock.service';
 
 @Component({
@@ -11,13 +13,14 @@ import { StockService, Stock } from '../stock.service';
 })
 export class StockManageComponent implements OnInit {
 
-    private stocks:Array<Stock>;
+    private stocks: Observable<Stock[]>;
     private searchInput: FormControl = new FormControl();
     public keyWords:string;
 
     constructor(
         private router: Router,
-        private stockService:StockService
+        private stockService:StockService,
+        private http: HttpClient
     ) { }
 
     ngOnInit() {

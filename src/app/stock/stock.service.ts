@@ -1,9 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class StockService {
 
-    constructor() { }
+    constructor(
+        private http: HttpClient
+    ) { }
 
     private stocks:Stock[] = [
         new Stock( 21, "第一支股票", 124324, 2, "没有描述", ["IT","互联网"] ),
@@ -13,15 +17,13 @@ export class StockService {
         new Stock( 3, "第五支股票", 123454, 3, "没有描述", ["互联网","教育"] )
     ];
 
-    public getStocks():Stock[] {
-        return this.stocks;
+    public getStocks(): Observable<any> {
+        let stocks = this.http.get('/api/stock');
+        return stocks;
     }
 
-    public getStock(id:number):Stock {
-        let stock:Stock = this.stocks.find(stock=> stock.id == id);
-        if (!stock) {
-            stock = new Stock( null, "", null, null, "", [] );
-        }
+    public getStock(id:number): Observable<any> {
+        let stock = this.http.get('/api/stock/' + id);
         return stock;
     }
 
