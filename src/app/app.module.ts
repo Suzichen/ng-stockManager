@@ -6,6 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from './app.component';
 import { appRoutingModule } from './app.routes';
 import { HeaderComponent } from './header/header.component';
+import { SocketService } from './header/socket.service';
 import { AsideComponent } from './aside/aside.component';
 import { ContentComponent } from './content/content.component';
 import { ContentHdComponent } from './content/content-hd/content-hd.component';
@@ -42,7 +43,7 @@ import { CheckboxValidatorDirective } from './stock/stock-form/directives/checkb
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [StockService],
+  providers: [StockService, SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
