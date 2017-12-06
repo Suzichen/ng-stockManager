@@ -9,8 +9,6 @@ export class StockService {
         private http: HttpClient
     ) { }
 
-    
-
     public getStocks(): Observable<any> {
         let stocks = this.http.get('/api/stock');
         return stocks;
