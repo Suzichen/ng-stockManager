@@ -16,11 +16,9 @@ export class HeaderComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.socketService
-            .createWebSockeetServer('ws://localhost:8001')
-            .map((data:string) => JSON.parse(data))
-            // 每收到一条消息，就刷新消息列表
-            .subscribe(data => this.resetMessages(data))
+        setInterval(() => {
+            this.resetMessages(mockData);
+        }, 10000);
     }
 
     resetMessages(data) {
@@ -36,4 +34,9 @@ export class Messages {
         public contact: string,
         public msg: string
     ) {}
+}
+
+const mockData = {
+    contact: "Suzichen",
+    msg: "这是自动发送的消息"
 }

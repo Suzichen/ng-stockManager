@@ -53,9 +53,10 @@ export class StockFormComponent implements OnInit {
         this.buildForm();
         // 获取后台数据，更新表单
         if (stockId != 0) {
-            this.stockService.getStock(stockId).subscribe(
-                data => this.resetForm(data)
-            );
+            this.stockService.getStock(stockId)
+                .subscribe(
+                    data => this.resetForm(data)
+                );
         };
         // 内容变化时，处理表单验证
         this.form.valueChanges

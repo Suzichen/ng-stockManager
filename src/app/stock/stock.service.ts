@@ -10,12 +10,20 @@ export class StockService {
     ) { }
 
     public getStocks(): Observable<any> {
-        let stocks = this.http.get('/api/stock');
+        let stocks = this.http
+            .get('mock-data/stocks-mock.json')
+            .map((response) => {
+                return response.result;
+            })
         return stocks;
     }
 
     public getStock(id:number): Observable<any> {
-        let stock = this.http.get('/api/stock/' + id);
+        let stock = this.http
+            .get('mock-data/stock-mock.json')
+            .map((response) => {
+                return response.result;
+            })
         return stock;
     }
 
