@@ -19,8 +19,7 @@
             <th>评级</th>
             <th>操作</th>
         </tr>
-        <!-- <tr *ngFor="let stock of stocks | stockFilter:'name':keyWords;let i=index"> -->
-        <tr *ngFor="let stock of stocks | async;let i=index">
+        <tr *ngFor="let stock of stocks | async | stockFilter:'name':keyWords;let i=index">
             <td style="width: 10px">{{i+1}}</td>
             <td>{{stock.name}}</td>
             <td>{{stock.id}}</td>
