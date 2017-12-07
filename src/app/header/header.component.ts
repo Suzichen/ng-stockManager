@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SocketService } from './socket.service';
 
 @Component({
   selector: 'admin-header',
@@ -12,7 +11,7 @@ export class HeaderComponent implements OnInit {
     private msgCount:number = 0;
 
     constructor(
-        private socketService: SocketService
+        
     ) { }
 
     ngOnInit() {
