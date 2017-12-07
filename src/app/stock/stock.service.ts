@@ -44,6 +44,4 @@ export class Stock {
 // 定义响应体返回的数据类型
 interface StockResponse {
     result: Stock[];
-    code: number;
-    msg: string;
 }
