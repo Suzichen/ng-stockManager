@@ -10,21 +10,22 @@ export class StockService {
     ) { }
 
     public getStocks(): Observable<any> {
-        let stocks = this.http
-            .get('mock-data/stocks-mock.json')
+        return this.http
+            .get<StockResponse>('mock-data/stocks-mock.json')
             .map((response) => {
                 return response.result;
-            })
-        return stocks;
+            });
     }
 
     public getStock(id:number): Observable<any> {
-        let stock = this.http
-            .get('mock-data/stock-mock.json')
+        return this.http
+            .get<StockResponse>('mock-data/stocks-mock.json')
             .map((response) => {
-                return response.result;
-            })
-        return stock;
+                return response.result
+                    .find((stock) => {
+                        return stock.id == id;
+                    });
+            });
     }
 
 }
@@ -38,4 +39,11 @@ export class Stock {
         public desc:string,
         public categories:Array<string>
     ) {}
+}
+
+// 定义响应体返回的数据类型
+interface StockResponse {
+    result: Stock[];
+    code: number;
+    msg: string;
 }
