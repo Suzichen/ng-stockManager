@@ -17,7 +17,7 @@ export class StarsComponent implements OnInit, OnChanges {
     private ratingChange:EventEmitter<number> = new EventEmitter();
 
 
-    private stars:Array<boolean> = [];
+    public stars:Array<boolean> = [];
 
     constructor() { }
 

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
     private messages:Messages = new Messages('','');
-    private msgCount:number = 0;
+    public msgCount:number = 0;
 
     constructor(
         

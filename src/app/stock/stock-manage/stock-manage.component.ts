@@ -13,8 +13,8 @@ import { StockService, Stock } from '../stock.service';
 })
 export class StockManageComponent implements OnInit {
 
-    private stocks: Observable<Stock[]>;
-    private searchInput: FormControl = new FormControl();
+    public stocks: Observable<Stock[]>;
+    public searchInput: FormControl = new FormControl();
     public keyWords:string;
 
     constructor(

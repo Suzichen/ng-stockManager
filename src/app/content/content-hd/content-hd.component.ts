@@ -10,8 +10,8 @@ import "rxjs/add/operator/filter"
 })
 export class ContentHdComponent implements OnInit {
 
-    private pageTitle:string = '首页';
-    private pageDes:string = '首页信息';
+    public pageTitle:string = '首页';
+    public pageDes:string = '首页信息';
 
     constructor(
         router: Router

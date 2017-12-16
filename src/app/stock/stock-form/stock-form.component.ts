@@ -11,7 +11,7 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@ang
 })
 export class StockFormComponent implements OnInit {
 
-    private stock: Stock = new Stock(null, '', null, null, '', [ ]);
+    public stock: Stock = new Stock(null, '', null, null, '', [ ]);
     public form: FormGroup;
     public categories: Array<string> = ['IT','互联网','金融','医疗','教育'];
 
