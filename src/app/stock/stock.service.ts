@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 @Injectable()
@@ -25,6 +25,13 @@ export class StockService {
     public getStock(id:number): Observable<any> {
         let stock = this.http.get('/api/stock/' + id);
         return stock;
+    }
+
+    public updataStock(data) {
+        this.http.post('/api/updata', JSON.stringify(data), {
+          headers: new HttpHeaders().set('Content-Type','application/json')
+        })
+          .subscribe(data => console.log(data));
     }
 
 }

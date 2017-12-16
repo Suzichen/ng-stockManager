@@ -14,6 +14,7 @@ export class StockFormComponent implements OnInit {
     private stock: Stock = new Stock(null, '', null, null, '', [ ]);
     public form: FormGroup;
     public categories: Array<string> = ['IT','互联网','金融','医疗','教育'];
+    private stockId = this.routerIfo.snapshot.params['id'];
 
     // 错误信息列表缓存
     public formErrorsList = {
@@ -48,12 +49,11 @@ export class StockFormComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        let stockId = this.routerIfo.snapshot.params['id'];
         // 初始化表单
         this.buildForm();
         // 获取后台数据，更新表单
-        if (stockId != 0) {
-            this.stockService.getStock(stockId).subscribe(
+        if (this.stockId != 0) {
+            this.stockService.getStock(this.stockId).subscribe(
                 data => this.resetForm(data)
             );
         };
@@ -73,7 +73,10 @@ export class StockFormComponent implements OnInit {
                 ]
             ],
             code: [
-                '',
+                {
+                  value: '',
+                  disabled: true
+                },
                 [
                     Validators.required
                 ]
@@ -166,6 +169,8 @@ export class StockFormComponent implements OnInit {
     save() {
         this.form.value.rating = this.stock.rating;
         this.form.value.categories = this.toStringCategories();
+        this.form.value.code = this.stockId;
+        this.stockService.updataStock(this.form.value);
         this.router.navigateByUrl('/stock');
     }
 }
