@@ -1,27 +1,39 @@
-# AdminLTE
+# 基于AdminLte的股票管理系统
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.4.
+## 分支说明
 
-## Development server
+ **master**分支为主分支，包含了服务端，在服务端实现数据的基本增删查改。运行方法：
+```shell
+/* 服务端 */
+cd serve 
+node build/stock_server
+/* 根目录新建命令行窗口，启动客户端 */
+npm run start
+```
+默认端口：3000，3001
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+**mock-data**分支不含服务器，数据为本地模拟数据，不能修改。运行方法：直接`ng serve -o`,默认端口4200.
 
-## Code scaffolding
+## 在线预览
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+[在线预览地址][1]
 
-## Build
+## 技术栈
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+本项目客户端技术栈：
 
-## Running unit tests
+ - [Angular][2] v5.0.3
+ - [Angular-cli][3] v1.5.3
+ - [AdminLTE][4] v2.4.2
+ - bootstrap v3.3.7
+ 
+本项目服务端技术栈：
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+ - Nodejs v8.9.1
+ - express v4.16
+ - ws v3.3.2
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  [1]: http://www.suchen820.com/www/stock
+  [2]: https://github.com/angular/angular
+  [3]: https://github.com/angular/angular-cli
+  [4]: https://github.com/almasaeed2010/AdminLTE
