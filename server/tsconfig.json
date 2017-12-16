@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",                     
+    "watch": true,
+    "lib": ["es6"],
+    "outDir": "./build",                        
+    "rootDir": "./server",   
+    "noImplicitThis": true, 
+    "experimentalDecorators": true,        
+    "emitDecoratorMetadata": true        
+  },
+  "include": [
+    "./server/**/*"
+  ],
+  "exclude": [
+      "node_modules"
+  ]
+}
