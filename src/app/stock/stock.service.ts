@@ -18,8 +18,11 @@ export class StockService {
     }
 
     public getStock(id:number): Observable<any> {
+        // 解决chrome浏览器在静态主机解析路径不正确的bug
+        let isChrome = navigator.userAgent.indexOf("Chrome") > -1;
+        let url = isChrome? './mock-data/stocks-mock.json': 'mock-data/stocks-mock.json';
         return this.http
-            .get<StockResponse>('mock-data/stocks-mock.json')
+            .get<StockResponse>(url)
             .map((response) => {
                 return response.result
                     .find((stock) => {
