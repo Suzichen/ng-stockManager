@@ -74,7 +74,10 @@ export class StockFormComponent implements OnInit {
                 ]
             ],
             code: [
-                '',
+                {
+                  value: '',
+                  disabled: true
+                },
                 [
                     Validators.required
                 ]
